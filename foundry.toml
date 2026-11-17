@@ -1,0 +1,29 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+solc = "0.8.26"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 10000
+via_ir = true
+bytecode_hash = "none"
+fs_permissions = [{ access = "read-write", path = "./deployments" }]
+auto_detect_remappings = false
+gas_limit = "18446744073709551615"
+
+[profile.test]
+via_ir = false
+optimizer_runs = 500
+
+[profile.ci.fuzz]
+runs = 500
+
+# RPC and explorer endpoints are passed explicitly from .env (never committed):
+#   RPC_URL               = your chain's JSON-RPC endpoint
+#   explorer/verify API   = the chain's block explorer API, if verification is needed
+# The system targets any Cancun-compatible EVM chain (transient storage required).
+
+# See more config options at https://foundry.paradigm.xyz
